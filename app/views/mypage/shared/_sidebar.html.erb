@@ -26,7 +26,9 @@
       <ul class="list-unstyled ms-n2 mb-0">
         <!-- Nav item -->
         <li class="nav-item <%= active_if('mypage/profiles') %>">
-          <a class="nav-link" href="/mypage/profile"><i class="bi bi-person me-2"></i>プロフィール</a>
+          <%= link_to mypage_profile_path, class: 'nav-link' do %>
+            <i class="bi bi-person me-2"></i>プロフィール
+          <% end %>
         </li>
         <!-- Nav item -->
         <li class="nav-item <%= active_if('mypage/password_changes') %>">
