@@ -9,7 +9,12 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   get 'signup', to: 'users#new'
   post 'signup', to: 'users#create'
-  resources :users, only: %i[new create]
+  resources :users, only: %i[new create show] do
+    resource :relationships, only: %i[create destroy]
+    get 'followings' => 'relationships#followings', as: 'followings'
+    get 'followers' => 'relationships#followers', as: 'followers'
+  end
+
   resources :events do
     collection do
       get :future
@@ -30,7 +35,7 @@ Rails.application.routes.draw do
     resource :event_calendar, only: %i[show]
     resources :notifications, only: %i[index]
     resource :notification_setting, only: %i[show update]
-    resource :profile, only: %i[show update] do
+    resource :profile, only: %i[show edit update] do
       resource :avatar, only: %i[destroy], module: :profiles
     end
     resource :password_change, only: %i[show update]
