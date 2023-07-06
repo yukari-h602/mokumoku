@@ -2,8 +2,7 @@
 
 class Mypage::ProfilesController < Mypage::BaseController
   before_action :set_user, only: %i[show edit update]
-  def show
-  end
+  def show; end
 
   def edit; end
 
@@ -23,6 +22,6 @@ class Mypage::ProfilesController < Mypage::BaseController
   end
 
   def profile_params
-    params.require(:user).permit(:name, :avatar, :email, :profile, :hobby)
+    params.require(:user).permit(:name, :avatar, :profile, :hobby)
   end
 end
